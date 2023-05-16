@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurd.zip - Coming Soon</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s;
+        }
+        .dark-mode {
+            background-color: #222;
+            color: #fff;
+        }
+        .light-mode {
+            background-color: #fff;
+            color: #222;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+        .toggle-sidebar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .sidebar button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .sidebar button:hover {
+            background-color: #555;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="sidebar hidden">
+        <button onclick="showContent('kurd')">kurd.zip 😃</button>
+        <button onclick="showContent('about')">About 🧑</button>
+        <button onclick="showContent('contact')">Contact 📞</button>
+        <button onclick="toggleTheme()">Toggle Theme 🌓</button>
+    </div>
+    <button class="toggle-sidebar" onclick="toggleSidebar()">+</button>
+    <div class="content">
+        <div id="kurd" style="display: none;">
+            <h1>kurd.zip</h1>
+            <p>This website is reserved for a future start-up. Stay tuned! 😊</p>
+        </div>
+        <div id="about">
+            <h1>About</h1>
+            <p>Hi, I'm San Ayad Ismael from Kurdistan, an 18-year-old male, coding enthusiast, and student. I'm passionate about technology and always eager to learn new things. 🚀</p>
+        </div>
+        <div id="contact" style="display: none;">
+            <h1>Contact</h1>
+            <p>Feel free to reach out to me on my socials:</p>
+            <ul>
+                <li><a href="https://twitter.com/sangraphic" target="_blank">Twitter.com/sangraphic</a></li>
+                <li><a href="https://github.com/sangraphic" target="_blank">Github.com/sangraphic</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let currentTheme = 'light-mode';
+
+        function toggleTheme() {
+            if (currentTheme === 'dark-mode') {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                currentTheme = 'light-mode';
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                currentTheme = 'dark-mode';
+            }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleButton = document.querySelector('.toggle-sidebar');
+            sidebar.classList.toggle('hidden');
+            toggleButton.textContent = sidebar.classList.contains('hidden') ? '+' : 'X';
+        }
+
+        function showContent(id) {
+            document.querySelectorAll('.content > div').forEach(div => {
+                div.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+
+        // Set the initial content
+        showContent('about');
+    </script>
+</body>
+</html>
