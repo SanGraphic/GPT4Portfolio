@@ -1,125 +1,395 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurd.zip - Coming Soon</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            transition: background-color 0.3s;
-        }
-        .dark-mode {
-            background-color: #222;
-            color: #fff;
-        }
-        .light-mode {
-            background-color: #fff;
-            color: #222;
-        }
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200px;
-            height: 100%;
-            background-color: #333;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            transition: transform 0.3s;
-            z-index: 1000;
-        }
-        .sidebar.hidden {
-            transform: translateX(-100%);
-        }
-        .toggle-sidebar {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        .sidebar button {
-            background-color: #444;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            width: 100%;
-        }
-        .sidebar button:hover {
-            background-color: #555;
-        }
-        .content {
-            padding: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurd.zip - Coming Soon</title>
+  <!-- Add favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <!-- Add animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Add fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: #222;
+      color: #fff;
+    }
+
+    .light-mode {
+      background-color: #fff;
+      color: #222;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      background-color: #333;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      /* Add transition property */
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+    }
+
+    .sidebar.hidden {
+      /* Remove animate__backOutLeft class */
+      /* Add transform property */
+      transform: translateX(-100%);
+    }
+
+    .toggle-sidebar {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1001;
+      /* Add transition property */
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .toggle-sidebar.open {
+      /* Add transform property */
+      transform: rotate(45deg);
+    }
+
+    .sidebar button {
+      background-color: #444;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .sidebar button:hover {
+      background-color: #555;
+    }
+
+    .content {
+      padding: 20px;
+    }
+  </style>
 </head>
 <body class="light-mode">
-    <div class="sidebar hidden">
-        <button onclick="showContent('kurd')">kurd.zip 😃</button>
-        <button onclick="showContent('about')">About 🧑</button>
-        <button onclick="showContent('contact')">Contact 📞</button>
-        <button onclick="toggleTheme()">Toggle Theme 🌓</button>
+<div class="sidebar hidden">
+  <button onclick="showContent('kurd'); toggleSidebar()">kurd.zip 😃</button>
+  <button onclick="showContent('about'); toggleSidebar()">About 🧑</button>
+  <button onclick="showContent('contact'); toggleSidebar()">Contact 📞</button>
+  <button onclick="toggleTheme()">Toggle Theme 🌓</button>
+</div>
+<button class="toggle-sidebar" onclick="toggleSidebar()">+</button>
+<div class="content animate__animated animate__fadeInRight">
+  <div id="kurd" style="display: none;">
+    <h1>kurd.zip</h1>
+    <p>This website is reserved for a future start-up. Stay tuned! 😊   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+      border: 1px solid black;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .buttons button {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: none;
+      background-color: #333;
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="300"></canvas>
+<div class="buttons">
+  <div class="dpad">
+    <div class="dpad-row">
+      <button id="up">↑</button>
     </div>
-    <button class="toggle-sidebar" onclick="toggleSidebar()">+</button>
-    <div class="content">
-        <div id="kurd" style="display: none;">
-            <h1>kurd.zip</h1>
-            <p>This website is reserved for a future start-up. Stay tuned! 😊</p>
-        </div>
-        <div id="about">
-            <h1>About</h1>
-            <p>Hi, My name is San Ayad, 18-years-old from Kurdistan, student & coding enthusiast. I'm passionate about technology and always eager to learn & experiment with new tech, like for example, this entire website was written by GPT-4 an AI language model from OpenAI. 🚀</p>
-        </div>
-        <div id="contact" style="display: none;">
-            <h1>Contact</h1>
-            <p>Feel free to reach out to me on my socials:</p>
-            <ul>
-                <li><a href="https://twitter.com/sangraphic" target="_blank">Twitter.com/sangraphic</a></li>
-                <li><a href="https://github.com/sangraphic" target="_blank">Github.com/sangraphic</a></li>
-            </ul>
-        </div>
+    <div class="dpad-row">
+      <button id="left">←</button>
+      <button id="right">→</button>
     </div>
-    <script>
-        let currentTheme = 'light-mode';
+    <div class="dpad-row">
+      <button id="down">↓</button>
+    </div>
+  </div>
+</div>
+<script>
+  // Get the canvas element and its context
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
 
-        function toggleTheme() {
-            if (currentTheme === 'dark-mode') {
-                document.body.classList.remove('dark-mode');
-                document.body.classList.add('light-mode');
-                currentTheme = 'light-mode';
-            } else {
-                document.body.classList.remove('light-mode');
-                document.body.classList.add('dark-mode');
-                currentTheme = 'dark-mode';
-            }
+  // Define some constants
+  const SIZE = 20; // The size of each cell in the grid
+  const ROWS = canvas.height / SIZE; // The number of rows in the grid
+  const COLS = canvas.width / SIZE; // The number of columns in the grid
+  const SPEED = 160; // The speed of the game in milliseconds
+
+  // Define some colors
+  const BG_COLOR = "#eee"; // The background color of the canvas
+  const SNAKE_COLOR = "#0f0"; // The color of the snake
+  const FOOD_COLOR = "#f00"; // The color of the food
+
+  // Define some variables
+  let snake; // An array to store the snake's body
+  let food; // An object to store the food's position
+  let dx; // The horizontal direction of the snake
+  let dy; // The vertical direction of the snake
+  let score; // The current score of the game
+  let interval; // The interval to update the game
+
+  // Initialize the game
+  function init() {
+    // Create the snake with two cells
+    snake = [
+      {x: Math.floor(COLS / 2) * SIZE, y: Math.floor(ROWS / 2) * SIZE}, // The head
+      {x: (Math.floor(COLS / 2) - 1) * SIZE, y: Math.floor(ROWS / 2) * SIZE} // The tail
+    ];
+
+    // Create the food at a random position
+    food = {
+      x: Math.floor(Math.random() * COLS) * SIZE,
+      y: Math.floor(Math.random() * ROWS) * SIZE
+    };
+
+    // Set the initial direction to right
+    dx = SIZE;
+    dy = 0;
+
+    // Set the initial score to zero
+    score = 0;
+
+    // Clear any previous interval
+    clearInterval(interval);
+
+    // Start a new interval to update the game
+    interval = setInterval(update, SPEED);
+  }
+
+  // Update the game logic
+  function update() {
+    // Move the snake by adding a new head and removing the tail
+    const head = {
+      x: snake[0].x + dx,
+      y: snake[0].y + dy
+    };
+    snake.unshift(head);
+    snake.pop();
+
+    // Check if the snake has eaten the food
+    if (snake[0].x === food.x && snake[0].y === food.y) {
+      // Increase the score by one
+      score++;
+
+      // Add a new cell to the snake's tail
+      snake.push({});
+
+      // Create a new food at a random position
+      food = {
+        x: Math.floor(Math.random() * COLS) * SIZE,
+        y: Math.floor(Math.random() * ROWS) * SIZE
+      };
+    }
+
+    // Check if the snake has hit the wall or itself
+    if (snake[0].x < 0 || snake[0].x >= canvas.width || snake[0].y < 0 || snake[0].y >= canvas.height || isColliding(snake[0], snake.slice(1))) {
+      // Stop the game and alert the score
+      clearInterval(interval);
+      alert("Game over! Your score is " + score);
+    }
+
+    // Draw everything on the canvas
+    draw();
+  }
+
+  // Draw everything on the canvas
+  function draw() {
+    // Clear the canvas
+    ctx.fillStyle = BG_COLOR;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the snake
+    ctx.fillStyle = SNAKE_COLOR;
+    for (let cell of snake) {
+      ctx.fillRect(cell.x, cell.y, SIZE, SIZE);
+    }
+
+    // Draw the food
+    ctx.fillStyle = FOOD_COLOR;
+    ctx.fillRect(food.x, food.y, SIZE, SIZE);
+
+    // Draw the score
+    ctx.fillStyle = "black";
+    ctx.font = "20px Arial";
+    ctx.fillText("Score: " + score, 10, 20);
+  }
+
+  // Check if two cells are colliding
+  function isColliding(cell1, cell2) {
+    for (let cell of cell2) {
+      if (cell1.x === cell.x && cell1.y === cell.y) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Handle keyboard input for desktop users
+  document.addEventListener("keydown", function(event) {
+    // Change the direction according to the key pressed
+    switch (event.key) {
+      case "ArrowLeft":
+        if (dx !== SIZE) { // Prevent the snake from going backwards
+          dx = -SIZE;
+          dy = 0;
         }
-
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            const toggleButton = document.querySelector('.toggle-sidebar');
-            sidebar.classList.toggle('hidden');
-            toggleButton.textContent = sidebar.classList.contains('hidden') ? '+' : 'X';
+        break;
+      case "ArrowRight":
+        if (dx !== -SIZE) { // Prevent the snake from going backwards
+          dx = SIZE;
+          dy = 0;
         }
-
-        function showContent(id) {
-            document.querySelectorAll('.content > div').forEach(div => {
-                div.style.display = 'none';
-            });
-            document.getElementById(id).style.display = 'block';
+        break;
+      case "ArrowUp":
+        if (dy !== SIZE) { // Prevent the snake from going backwards
+          dx = 0;
+          dy = -SIZE;
         }
+        break;
+      case "ArrowDown":
+        if (dy !== -SIZE) { // Prevent the snake from going backwards
+          dx = 0;
+          dy = SIZE;
+        }
+        break;
+    }
+  });
 
-        // Set the initial content
-        showContent('about');
-    </script>
+  // Handle button input for mobile users
+  const buttons = document.querySelectorAll(".buttons button");
+  buttons.forEach(button => {
+    button.addEventListener("click", function() {
+      // Change the direction according to the button clicked
+      switch (button.id) {
+        case "left":
+          if (dx !== SIZE) { // Prevent the snake from going backwards
+            dx = -SIZE;
+            dy = 0;
+          }
+          break;
+        case "right":
+          if (dx !== -SIZE) { // Prevent the snake from going backwards
+            dx = SIZE;
+            dy = 0;
+          }
+          break;
+        case "up":
+          if (dy !== SIZE) { // Prevent the snake from going backwards
+            dx = 0;
+            dy = -SIZE;
+          }
+          break;
+        case "down":
+          if (dy !== -SIZE) { // Prevent the snake from going backwards
+            dx = 0;
+            dy = SIZE;
+          }
+          break;
+      }
+    });
+  });
+
+// Start the game
+
+init();
+</script> </body> </p>
+  </div>
+  <div id="about">
+    <h1>About</h1>
+    <p>Hi, My name is San Ayad, 18-years-old from Kurdistan, student & coding enthusiast. I'm passionate about technology
+      and always eager to learn & experiment with new tech, like for example, this entire website was written by GPT-4
+      an AI language model from OpenAI. 🚀</p>
+  </div>
+  <div id="contact" style="display: none;">
+    <h1>Contact</h1>
+    <p>Feel free to reach out to me on my socials:</p>
+    <ul>
+      <!-- Add social media icons -->
+      <li><a href="https://twitter.com/sangraphic" target="_blank"><i class="fab fa-twitter"></i> Twitter.com/sangraphic</a></li>
+       <li><a href="https://github.com/sangraphic" target="_blank"><i class="fab fa-github"></i> Github.com/sangraphic</a></li>
+    </ul>
+  </div>
+</div>
+<script>
+  let currentTheme = 'light-mode';
+
+  function toggleTheme() {
+    if (currentTheme === 'dark-mode') {
+      document.body.classList.remove('dark-mode');
+      document.body.classList.add('light-mode');
+      currentTheme = 'light-mode';
+    } else {
+      document.body.classList.remove('light-mode');
+      document.body.classList.add('dark-mode');
+      currentTheme = 'dark-mode';
+    }
+  }
+
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleButton = document.querySelector('.toggle-sidebar');
+    sidebar.classList.toggle('hidden');
+    toggleButton.classList.toggle('open');
+    // Change the text content of the toggle button
+    // toggleButton.textContent = sidebar.classList.contains('hidden') ? '+' : 'X';
+  }
+
+  function showContent(id) {
+    document.querySelectorAll('.content > div').forEach(div => {
+      div.style.display = 'none';
+    });
+    document.getElementById(id).style.display = 'block';
+  }
+
+  // Set the initial content
+  showContent('kurd');
+</script>
 </body>
 </html>
