@@ -89,263 +89,31 @@
 <body class="light-mode">
 <div class="sidebar hidden">
   <button onclick="showContent('kurd'); toggleSidebar()">kurd.zip 😃</button>
-  <button onclick="showContent('about'); toggleSidebar()">About 🧑</button>
-  <button onclick="showContent('contact'); toggleSidebar()">Contact 📞</button>
+  <button onclick="showContent('about'); toggleSidebar()">About 👀</button>
+  <button onclick="showContent('contact'); toggleSidebar()">Socials 📞</button>
   <button onclick="toggleTheme()">Toggle Theme 🌓</button>
 </div>
 <button class="toggle-sidebar" onclick="toggleSidebar()">+</button>
 <div class="content animate__animated animate__fadeInRight">
   <div id="kurd" style="display: none;">
     <h1>kurd.zip</h1>
-    <p>This website is reserved for a future start-up. Stay tuned! 😊   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <p>This website is <b>reserved </b> for a future start-up. Stay tuned! 😊  
 
-    canvas {
-      display: block;
-      margin: auto;
-      border: 1px solid black;
-    }
 
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
 
-    .buttons button {
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      border: none;
-      background-color: #333;
-      color: #fff;
-      font-size: 20px;
-    }
-
-    .vertical {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-  </style>
-</head>
-<body>
-<canvas id="canvas" width="300" height="300"></canvas>
-<div class="buttons">
-  <div class="dpad">
-    <div class="dpad-row">
-      <button id="up">↑</button>
-    </div>
-    <div class="dpad-row">
-      <button id="left">←</button>
-      <button id="right">→</button>
-    </div>
-    <div class="dpad-row">
-      <button id="down">↓</button>
-    </div>
-  </div>
-</div>
-<script>
-  // Get the canvas element and its context
-  const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
-
-  // Define some constants
-  const SIZE = 20; // The size of each cell in the grid
-  const ROWS = canvas.height / SIZE; // The number of rows in the grid
-  const COLS = canvas.width / SIZE; // The number of columns in the grid
-  const SPEED = 160; // The speed of the game in milliseconds
-
-  // Define some colors
-  const BG_COLOR = "#eee"; // The background color of the canvas
-  const SNAKE_COLOR = "#0f0"; // The color of the snake
-  const FOOD_COLOR = "#f00"; // The color of the food
-
-  // Define some variables
-  let snake; // An array to store the snake's body
-  let food; // An object to store the food's position
-  let dx; // The horizontal direction of the snake
-  let dy; // The vertical direction of the snake
-  let score; // The current score of the game
-  let interval; // The interval to update the game
-
-  // Initialize the game
-  function init() {
-    // Create the snake with two cells
-    snake = [
-      {x: Math.floor(COLS / 2) * SIZE, y: Math.floor(ROWS / 2) * SIZE}, // The head
-      {x: (Math.floor(COLS / 2) - 1) * SIZE, y: Math.floor(ROWS / 2) * SIZE} // The tail
-    ];
-
-    // Create the food at a random position
-    food = {
-      x: Math.floor(Math.random() * COLS) * SIZE,
-      y: Math.floor(Math.random() * ROWS) * SIZE
-    };
-
-    // Set the initial direction to right
-    dx = SIZE;
-    dy = 0;
-
-    // Set the initial score to zero
-    score = 0;
-
-    // Clear any previous interval
-    clearInterval(interval);
-
-    // Start a new interval to update the game
-    interval = setInterval(update, SPEED);
-  }
-
-  // Update the game logic
-  function update() {
-    // Move the snake by adding a new head and removing the tail
-    const head = {
-      x: snake[0].x + dx,
-      y: snake[0].y + dy
-    };
-    snake.unshift(head);
-    snake.pop();
-
-    // Check if the snake has eaten the food
-    if (snake[0].x === food.x && snake[0].y === food.y) {
-      // Increase the score by one
-      score++;
-
-      // Add a new cell to the snake's tail
-      snake.push({});
-
-      // Create a new food at a random position
-      food = {
-        x: Math.floor(Math.random() * COLS) * SIZE,
-        y: Math.floor(Math.random() * ROWS) * SIZE
-      };
-    }
-
-    // Check if the snake has hit the wall or itself
-    if (snake[0].x < 0 || snake[0].x >= canvas.width || snake[0].y < 0 || snake[0].y >= canvas.height || isColliding(snake[0], snake.slice(1))) {
-      // Stop the game and alert the score
-      clearInterval(interval);
-      alert("Game over! Your score is " + score);
-    }
-
-    // Draw everything on the canvas
-    draw();
-  }
-
-  // Draw everything on the canvas
-  function draw() {
-    // Clear the canvas
-    ctx.fillStyle = BG_COLOR;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw the snake
-    ctx.fillStyle = SNAKE_COLOR;
-    for (let cell of snake) {
-      ctx.fillRect(cell.x, cell.y, SIZE, SIZE);
-    }
-
-    // Draw the food
-    ctx.fillStyle = FOOD_COLOR;
-    ctx.fillRect(food.x, food.y, SIZE, SIZE);
-
-    // Draw the score
-    ctx.fillStyle = "black";
-    ctx.font = "20px Arial";
-    ctx.fillText("Score: " + score, 10, 20);
-  }
-
-  // Check if two cells are colliding
-  function isColliding(cell1, cell2) {
-    for (let cell of cell2) {
-      if (cell1.x === cell.x && cell1.y === cell.y) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  // Handle keyboard input for desktop users
-  document.addEventListener("keydown", function(event) {
-    // Change the direction according to the key pressed
-    switch (event.key) {
-      case "ArrowLeft":
-        if (dx !== SIZE) { // Prevent the snake from going backwards
-          dx = -SIZE;
-          dy = 0;
-        }
-        break;
-      case "ArrowRight":
-        if (dx !== -SIZE) { // Prevent the snake from going backwards
-          dx = SIZE;
-          dy = 0;
-        }
-        break;
-      case "ArrowUp":
-        if (dy !== SIZE) { // Prevent the snake from going backwards
-          dx = 0;
-          dy = -SIZE;
-        }
-        break;
-      case "ArrowDown":
-        if (dy !== -SIZE) { // Prevent the snake from going backwards
-          dx = 0;
-          dy = SIZE;
-        }
-        break;
-    }
-  });
-
-  // Handle button input for mobile users
-  const buttons = document.querySelectorAll(".buttons button");
-  buttons.forEach(button => {
-    button.addEventListener("click", function() {
-      // Change the direction according to the button clicked
-      switch (button.id) {
-        case "left":
-          if (dx !== SIZE) { // Prevent the snake from going backwards
-            dx = -SIZE;
-            dy = 0;
-          }
-          break;
-        case "right":
-          if (dx !== -SIZE) { // Prevent the snake from going backwards
-            dx = SIZE;
-            dy = 0;
-          }
-          break;
-        case "up":
-          if (dy !== SIZE) { // Prevent the snake from going backwards
-            dx = 0;
-            dy = -SIZE;
-          }
-          break;
-        case "down":
-          if (dy !== -SIZE) { // Prevent the snake from going backwards
-            dx = 0;
-            dy = SIZE;
-          }
-          break;
-      }
-    });
-  });
-
-// Start the game
-
-init();
-</script> </body> </p>
+</p>
+<p> <b>More:</b> <button onclick="showContent('about')">About 👤</button> </p>
   </div>
   <div id="about">
     <h1>About</h1>
-    <p>Hi, My name is San Ayad, 18-years-old from Kurdistan, student & coding enthusiast. I'm passionate about technology
-      and always eager to learn & experiment with new tech, like for example, this entire website was written by GPT-4
-      an AI language model from OpenAI. 🚀</p>
+    <p>Hi, My name is <b>San, </b>18-years-old from Kurdistan, student & coding enthusiast. I'm <b>passionate about technology</b>
+      and always eager to learn & experiment with new tech, like for example, </p>
+
+<p>This <b>entire </b>website was <b>written by GPT-4</b>
+      an AI language model from <b>OpenAI. </b>🚀</p>
+
+<p> <b>More:</b> <button onclick="showContent('contact')">Socials</button> </p>
+
   </div>
   <div id="contact" style="display: none;">
     <h1>Contact</h1>
