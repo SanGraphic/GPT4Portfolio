@@ -10,10 +10,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <!-- Add fontawesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <!-- Add Roboto font -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <!-- Add custom stylesheet -->
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Roboto, sans-serif;
       transition: background-color 0.3s;
     }
 
@@ -84,7 +87,364 @@
     .content {
       padding: 20px;
     }
-  </style>
+    
+    /* Add some animations to the content */
+    
+    .content h1 {
+        animation-name: slide-in-left; 
+        animation-duration: 1s; 
+        animation-fill-mode: both; 
+        animation-delay: 0.5s; 
+    }
+    
+    .content p {
+        animation-name: slide-in-right; 
+        animation-duration: 1s; 
+        animation-fill-mode: both; 
+        animation-delay: 1s; 
+    }
+    
+    .content button {
+        animation-name: bounce-in; 
+        animation-duration: 1s; 
+        animation-fill-mode:both; 
+        animation-delay:1.5s; 
+    }
+    
+    @keyframes slide-in-left {
+        from {transform : translateX(-100%); opacity :0;}
+        to {transform : translateX(0%); opacity :1;}
+    }
+    
+     @keyframes slide-in-right {
+        from {transform : translateX(100%); opacity :0;}
+        to {transform : translateX(0%); opacity :1;}
+     }
+     
+     @keyframes bounce-in {
+         from {transform : scale(0); opacity :0;}
+         to {transform : scale(1); opacity :1;}
+     }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+</style>
 </head>
 <body class="light-mode">
 <div class="sidebar hidden">
@@ -95,7 +455,7 @@
 </div>
 <button class="toggle-sidebar" onclick="toggleSidebar()">+</button>
 <div class="content animate__animated animate__fadeInRight">
-  <div id="kurd" style="display: none;">
+  <div id="kurd" style="display:none;">
     <h1>kurd.zip</h1>
     <p>This website is <b>reserved </b> for a future start-up. Stay tuned! 😊  
 
@@ -104,60 +464,65 @@
 </p>
 <p> <b>More:</b> <button onclick="showContent('about')">About 👤</button> </p>
   </div>
-  <div id="about">
-    <h1>About</h1>
-    <p>Hi, My name is <b>San, </b>18-years-old from Kurdistan, student & coding enthusiast. I'm <b>passionate about technology</b>
-      and always eager to learn & experiment with new tech, like for example, </p>
+  
+   <div id="about">
+     <h1>About</h1>
+     <p>Hi, My name is <b>San, </b>18-years-old from Kurdistan, student & coding enthusiast. I'm <b>passionate about technology</b>
+       and always eager to learn & experiment with new tech, like for example, </p>
 
 <p>This <b>entire </b>website was <b>written by GPT-4</b>
-      an AI language model from <b>OpenAI. </b>🚀</p>
+       an AI language model from <b>OpenAI. </b>🚀</p>
 
 <p> <b>More:</b> <button onclick="showContent('contact')">Socials</button> </p>
 
-  </div>
-  <div id="contact" style="display: none;">
-    <h1>Contact</h1>
-    <p>Feel free to reach out to me on my socials:</p>
-    <ul>
-      <!-- Add social media icons -->
-      <li><a href="https://twitter.com/sangraphic" target="_blank"><i class="fab fa-twitter"></i> Twitter.com/sangraphic</a></li>
+   </div>
+   
+   <div id="contact" style="display:none;">
+     <h1>Contact</h1>
+     <p>Feel free to reach out to me on my socials:</p>
+     <ul>
+       <!-- Add social media icons -->
+       <li><a href="https://twitter.com/sangraphic" target="_blank"><i class="fab fa-twitter"></i> Twitter.com/sangraphic</a></li>
        <li><a href="https://github.com/sangraphic" target="_blank"><i class="fab fa-github"></i> Github.com/sangraphic</a></li>
-    </ul>
-  </div>
+     </ul>
+   </div>
+
+  
 </div>
 <script>
-  let currentTheme = 'light-mode';
+let currentTheme = 'light-mode';
 
-  function toggleTheme() {
-    if (currentTheme === 'dark-mode') {
-      document.body.classList.remove('dark-mode');
-      document.body.classList.add('light-mode');
-      currentTheme = 'light-mode';
-    } else {
-      document.body.classList.remove('light-mode');
-      document.body.classList.add('dark-mode');
-      currentTheme = 'dark-mode';
-    }
-  }
+function toggleTheme() {
+if (currentTheme === 'dark-mode') {
+document.body.classList.remove('dark-mode');
+document.body.classList.add('light-mode');
+currentTheme = 'light-mode';
+} else {
+document.body.classList.remove('light-mode');
+document.body.classList.add('dark-mode');
+currentTheme = 'dark-mode';
+}
+}
 
-  function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    const toggleButton = document.querySelector('.toggle-sidebar');
-    sidebar.classList.toggle('hidden');
-    toggleButton.classList.toggle('open');
-    // Change the text content of the toggle button
-    // toggleButton.textContent = sidebar.classList.contains('hidden') ? '+' : 'X';
-  }
+function toggleSidebar() {
+const sidebar = document.querySelector('.sidebar');
+const toggleButton = document.querySelector('.toggle-sidebar');
+sidebar.classList.toggle('hidden');
+toggleButton.classList.toggle('open');
+// Change the text content of the toggle button
+// toggleButton.textContent = sidebar.classList.contains('hidden') ? '+' : 'X';
+}
 
-  function showContent(id) {
-    document.querySelectorAll('.content > div').forEach(div => {
-      div.style.display = 'none';
-    });
-    document.getElementById(id).style.display = 'block';
-  }
+function showContent(id) {
+document.querySelectorAll('.content > div').forEach(div => {
+div.style.display = 'none';
+});
+document.getElementById(id).style.display = 'block';
+}
 
-  // Set the initial content
-  showContent('kurd');
+// Set the initial content
+showContent('kurd');
 </script>
 </body>
 </html>
+
