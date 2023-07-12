@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="QuickBoost is a utility that helps you optimize and boost your Windows performance, such as CPU, RAM, Disk, Network, etc.">
+<style>
+/* css code for styling the web page */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #181818;
+  color: white;
+}
+
+h1 {
+  color: #0078d4;
+  text-align: center;
+}
+
+p {
+  margin: 10px;
+}
+
+a {
+  color: #0078d4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #cccccc;
+  padding: 20px;
+  background-color: #282828;
+}
+
+#logo {
+  display: block;
+  margin: 0 auto;
+}
+
+#download-button {
+  display: block;
+  width: 200px;
+  height: 50px;
+  margin: 20px auto;
+  border: none;
+  border-radius: 10px;
+  background-color: #0078d4;
+  color: white;
+  font-size: 20px;
+}
+
+#download-button:hover {
+  cursor: pointer;
+}
+
+#gif {
+  display: block;
+  margin: 0 auto;
+  max-width:100%; /* add this to resize the gif to fit the container */
+}
+</style>
+<script>
+// JavaScript code for handling the download button click
+function download() {
+  // get the link to the latest release from GitHub API
+var request = new XMLHttpRequest();
+request.open("GET", "https://api.github.com/repos/SanGraphic/QuickBoost/releases/latest", true);
+
+request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      // parse the response as JSON object
+      var data = JSON.parse(request.responseText);
+      // get the first asset from the assets array
+      var asset = data.assets[0];
+      // get the download url from the asset object
+      var url = asset.browser_download_url;
+      // open the url in a new tab
+      window.open(url, "_blank");
+    } else {
+      // handle error
+      alert("Something went wrong. Please try again later.");
+    }
+};
+
+request.onerror = function() {
+    // handle error
+    alert("Something went wrong. Please check your internet connection.");
+};
+
+request.send();
+}
+</script>
+</head>
+<body>
+<div id="container">
+
+
+
+<h1>QuickBoost: Automated Windows 10/11 Tweaking Utility</h1>
+<img id="gif" src="https://media.discordapp.net/attachments/744536520089796671/979117981147734016/ezgif-5-9322a93fa0.gif?width=895&height=468" alt="QuickBoost GIF">
+<p>QuickBoost is a small but powerful utility that helps you optimize and boost your Windows performance in various aspects.</p>
+<p>What does it do?</p>
+<ul>
+<li>Disable Telemetry & Data Collection</li>
+<li>Disable Scheduled Tasks & Bloatwares</li>
+<li>Disable Unnecessary Services</li>
+<li>Disable (most) System Loggings</li>
+<li>Performance & Memory Usage Tweaks</li>
+<li>Remove Temporary Files</li>
+<li>Auto-update to use latest script</li>
+</ul>
+<p>
+<h1><img src="https://img.shields.io/github/downloads/sangraphic/quickboost/total?label=Downloads&style=for-the-badge" alt="GitHub all releases"></h1>
+</p>
+
+<button id="download-button" onclick="download()">Download</button>
+
+<h3 style="color:red">⚠ MAKE A SYSTEM RESTORE POINT IN CASE ANYTHING GOES WRONG, TUTORIAL <a href="https://support.microsoft.com/en-us/windows/create-a-system-restore-point-77e02e2a-3298-c869-9974-ef5658ea3be9">HERE</a></h3>
+
+<p>An open-source community project</p>
+<p>Source-Code: <a href="https://github.com/SanGraphic/QuickBoost">GitHub</a></p>
+<p>Built & maintained by <a href="https://twitter.com/sangraphic">@SanGraphic</a></p>
+<p>San Ayad Ismael | 2023</p>
+</div>
+</body>
+</html>
