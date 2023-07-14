@@ -1,1 +1,1 @@
-Sitemap: https://kurd.zip/Sitemap.xml
+Sitemap: https://kurd.zip/sitemap.xml
